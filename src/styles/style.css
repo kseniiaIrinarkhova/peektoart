@@ -75,3 +75,15 @@ header ul li a {
     height: 100vh;
     background-color: azure;
 }
+
+section h2 {
+    font-size: 3em;
+    margin: 0;
+    padding: 0 0 20px;
+}
+
+section p {
+    font-size: 1.3em;
+    margin: 0;
+    padding: 0;
+}
