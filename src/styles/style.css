@@ -1,20 +1,62 @@
-
-.section {
-    /* the important one*/
-    background-attachment: fixed; 
- 
-    background-size: auto 80%;
-    background-position: 50% 0%;
-    background-repeat: no-repeat;
-    color: aqua;
+@import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+*{
+margin :0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Overlock", sans-serif;
 }
 
-#section1 {
-    background-color: black;
+body {
+    background-color: antiquewhite;
+    min-height: 200vh;
 }
-#section2 {
-    background-color: gray;
+
+/*style for sticky header */
+header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 100px;
+    /* always on top*/
+    z-index: 1;
+    /**/
+    transition: all 0.6;
 }
-#section3 {
-    background-color: green;
+
+header .logo {
+    position: relative;
+    font-weight: 1000;
+    width: 50px;
+    color: dimgray;
+    /* delete text decoration*/
+    text-decoration: none;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.6;
+}
+
+header ul{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+header ul li {
+    position: relative;
+    list-style: none;
+}
+
+header ul li a {
+    position: relative;
+    margin: 0 15px;
+    text-decoration: none;
+    color: dimgray;
+    letter-spacing: 2px;
+    transition: all 0.6s;
 }
