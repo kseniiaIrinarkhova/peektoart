@@ -82,7 +82,7 @@ header ul li a {
     background-color: beige;
 }
 
-#about{
+#content{
     position:relative;
     padding: 95px;
     width: 100%;
@@ -90,13 +90,13 @@ header ul li a {
     background-color: azure;
 }
 
-section h2 {
+div h2 {
     font-size: 3em;
     margin: 0;
     padding: 0 0 20px;
 }
 
-section p {
+div p {
     font-size: 1.3em;
     margin: 0;
     padding: 0;
