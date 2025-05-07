@@ -1,7 +1,6 @@
 const template = `
 <link rel="stylesheet" href="../src/components/ExibitionCard/ExibitionCard.css" />
     <div class="exibition-card">
-    <p>Card Test</p>
     </div>
 `;
 
@@ -22,6 +21,10 @@ class ExibitionCard extends HTMLElement {
      */
     set addExibitionData(exibition){
         console.log(exibition);
+        const card = this.shadowRoot.querySelector('.exibition-card');
+        const content = document.createElement('p');
+        content.textContent = `${exibition.name}`
+        card.appendChild(content)
     }
 }
 

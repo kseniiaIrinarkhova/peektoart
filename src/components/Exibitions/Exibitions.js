@@ -5,9 +5,9 @@ const template = `
 `;
 
 const data= [{
-    name: "Test1"
+    name: "Exibition 1"
 },
-{name:"Test2"}
+{name:"Exibition 2"}
 ];
 
 class Exibitions extends HTMLElement {
@@ -23,6 +23,7 @@ class Exibitions extends HTMLElement {
 
         this.exibitionContainer = this.shadowRoot.querySelector('.exibition-container')
         let el = document.createElement('p');
+        //get data from API
         data.forEach((exibition)=>{
             const exibitionEl = document.createElement("exibition-card");
             exibitionEl.addExibitionData = exibition;
