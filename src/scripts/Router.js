@@ -34,11 +34,10 @@ const Router = {
         }
         //switch routes
         
-        let el = document.createElement("h2");
+        let el;
         switch(route){
             case "/":
-                el = document.createElement("h2");
-                el.textContent = 'Peek To Art';
+                el = document.createElement("about-info");
                 break;
             case "/exibitions":
                 el = document.createElement("h2");
