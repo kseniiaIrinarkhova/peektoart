@@ -40,8 +40,7 @@ const Router = {
                 el = document.createElement("about-info");
                 break;
             case "/exibitions":
-                el = document.createElement("h2");
-                el.textContent = 'Exibitions';
+                el = document.createElement("exibition-container");
                 break;
             case "/artists":
                 el = document.createElement("h2");

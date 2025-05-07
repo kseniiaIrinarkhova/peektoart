@@ -2,6 +2,10 @@ import Router from "./Router.js";
 import SiteHeader from "../components/SiteHeader/SiteHeader.js";
 import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 import About from "../components/About/About.js";
+import ExibitionCard from "../components/ExibitionCard/ExibitionCard.js";
+import Exibitions from "../components/Exibitions/Exibitions.js";
+
+
 //add header style
 window.addEventListener("scroll", function(){
     //get header element
