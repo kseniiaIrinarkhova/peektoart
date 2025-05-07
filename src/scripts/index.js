@@ -1,4 +1,6 @@
 import Router from "./Router.js";
+import SiteHeader from "../components/SiteHeader/SiteHeader.js";
+import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 //add header style
 window.addEventListener("scroll", function(){
     //get header element
