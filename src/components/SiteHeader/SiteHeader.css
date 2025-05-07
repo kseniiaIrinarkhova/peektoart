@@ -34,6 +34,7 @@ header div{
 header .logo{
     position: relative;
     font-weight: 1000;
+    width: 50px;
     color: dimgray;
     /* delete text decoration*/
     text-decoration: none;

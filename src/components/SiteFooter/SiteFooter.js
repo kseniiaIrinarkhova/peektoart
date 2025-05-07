@@ -1,7 +1,7 @@
 const template = `
 <link rel="stylesheet" href="../src/components/SiteFooter/SiteFooter.css" />
     <footer>
-    <p>CopyRight</p>
+    <p>&copy; CopyRight</p>
     </footer>
     
 `;

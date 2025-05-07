@@ -3,7 +3,7 @@ const Router = {
     init: () =>{
         console.log("Running...");
         //add event listener for all links in nav bar
-        document.querySelectorAll('header a').forEach(link =>{
+        document.querySelector("site-header").shadowRoot.querySelectorAll('header a').forEach(link =>{
             link.addEventListener('click', e=>{
                 //prevent default action for link's clicking
                 e.preventDefault();
