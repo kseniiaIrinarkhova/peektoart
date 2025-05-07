@@ -8,7 +8,7 @@ font-family: "Overlock", sans-serif;
 
 body {
     background-color: antiquewhite;
-    min-height: 200vh;
+    min-height: 100vh;
 }
 
 /*style for sticky header */
@@ -78,7 +78,7 @@ header ul li a {
 #banner{
     position:relative;
     width: 100%;
-    height: 100vh;
+    height: 30vh;
     background-color: beige;
 }
 

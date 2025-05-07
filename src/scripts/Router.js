@@ -32,6 +32,43 @@ const Router = {
         if(addToHistory){
             history.pushState({route},null,route);
         }
+        //switch routes
+        
+        let el = document.createElement("h2");
+        switch(route){
+            case "/":
+                el = document.createElement("h2");
+                el.textContent = 'Peek To Art';
+                break;
+            case "/exibitions":
+                el = document.createElement("h2");
+                el.textContent = 'Exibitions';
+                break;
+            case "/artists":
+                el = document.createElement("h2");
+                el.textContent = 'Artists';
+                break;
+        }
+
+        if(el){
+            const entry = document.querySelector('#content');
+            //clear content of the page
+            entry.innerHTML = '';
+            //add new content
+            document.querySelector('#content').appendChild(el);
+            //scroll to the beginning of the page for home and to context for other pages
+            switch(route){
+                case "/":
+                    window.scrollX = 0;
+                    window.scrollY = 0;
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            // 404 error
+        }
+        
 
     },
 }
