@@ -3,11 +3,11 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 90vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 100px;
+    padding: 40px 50px;
     /* always on top*/
     z-index: 1;
     /**/
@@ -16,7 +16,7 @@ header {
 
 /*Add styling for sticky class*/
 header.sticky {
-    padding: 5px 100px;
+    padding: 5px 50px;
     background-color: dimgray;
 }
 
