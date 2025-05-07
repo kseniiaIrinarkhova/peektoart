@@ -4,7 +4,8 @@ import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 import About from "../components/About/About.js";
 import ExibitionCard from "../components/ExibitionCard/ExibitionCard.js";
 import Exibitions from "../components/Exibitions/Exibitions.js";
-
+import ArtistCard from "../components/ArtistCard/ArtistCard.js";
+import Artists from "../components/Artists/Artists.js";
 
 //add header style
 window.addEventListener("scroll", function(){

@@ -43,8 +43,7 @@ const Router = {
                 el = document.createElement("exibition-container");
                 break;
             case "/artists":
-                el = document.createElement("h2");
-                el.textContent = 'Artists';
+                el = document.createElement("artist-container");
                 break;
         }
 
@@ -55,14 +54,6 @@ const Router = {
             //add new content
             document.querySelector('#content').appendChild(el);
             //scroll to the beginning of the page for home and to context for other pages
-            switch(route){
-                case "/":
-                    window.scrollX = 0;
-                    window.scrollY = 0;
-                    break;
-                default:
-                    break;
-            }
         }else{
             // 404 error
         }
