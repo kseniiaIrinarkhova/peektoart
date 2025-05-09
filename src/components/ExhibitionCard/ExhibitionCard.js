@@ -1,3 +1,4 @@
+import { getArtistsNames } from "../../scripts/apiConfig.js";
 const template = `
 <link rel="stylesheet" href="../src/components/ExhibitionCard/ExhibitionCard.css" />
     <div class="exhibition-card">
@@ -29,25 +30,60 @@ class ExibitionCard extends HTMLElement {
     temlateEl.innerHTML = template;
     //made a deep clone of html
     shadow.appendChild(temlateEl.content.cloneNode(true));
+    this.exhibition = {};
   }
 
   /**
    * @param {any} exhibition
    */
   set addExibitionData(exhibition) {
-    const card = this.shadowRoot.querySelector('.exhibition-card');
-    card.querySelector('img').setAttribute("src", exhibition.image_url);
-    card.querySelector('.card-title').textContent = exhibition.title;
-    card.querySelector('.card-description').innerHTML = exhibition.short_description;
-    card.querySelector('.card-gallery').innerHTML = `<strong>Gallery:</strong> ${(exhibition.gallery_title)?exhibition.gallery_title: 'No information'}`;
-    card.querySelector('.card-begdate').innerHTML = `<strong>Begin Date:</strong> ${(exhibition.aic_start_at)?exhibition.aic_start_at.substring(0,10): 'No information'}`;
-    card.querySelector('.card-enddate').innerHTML = `<strong>End Date:</strong> ${(exhibition.aic_end_at)?exhibition.aic_end_at.substring(0,10): 'No information'}`;
-    let artistsList = card.querySelector('.card-artists ul');
-    let artists = exhibition.artist_ids.join(',');
-    let artist = document.createElement('li');
-    artist.textContent = artists;
-    artistsList.appendChild(artist);
+    this.exhibition = exhibition;
   }
+  async connectedCallback(){
+    try {
+      if(this.exhibition.artist_ids.length){
+        const artists = await this.fetchArtistsInfo(this.exhibition.artist_ids);
+        this.exhibition.artist_ids = artists;
+      }
+        this.render(this.exhibition)
+    } catch (error) {
+        this.shadowRoot.innerHTML = '<div>Error connected callback.</div>'
+        console.error(error);
+    }
+    
+}
+async fetchArtistsInfo(artist_ids){
+  try {
+    const artists = await getArtistsNames(artist_ids);
+    return artists;
+    
+} catch (error) {
+    this.shadowRoot.innerHTML = '<div>Error fetching artists data.</div>'
+    console.error(error);
+}
+}
+
+  render(data){
+    const card = this.shadowRoot.querySelector('.exhibition-card');
+    card.setAttribute('id',this.exhibition.id);
+    card.querySelector('img').setAttribute("src", data.image_url);
+    card.querySelector('.card-title').textContent = data.title;
+    card.querySelector('.card-description').innerHTML = data.short_description;
+    card.querySelector('.card-gallery').innerHTML = `<strong>Gallery:</strong> ${(data.gallery_title)?data.gallery_title: 'No information'}`;
+    card.querySelector('.card-begdate').innerHTML = `<strong>Begin Date:</strong> ${(data.aic_start_at)?data.aic_start_at.substring(0,10): 'No information'}`;
+    card.querySelector('.card-enddate').innerHTML = `<strong>End Date:</strong> ${(data.aic_end_at)?data.aic_end_at.substring(0,10): 'No information'}`;
+    let artistsList = card.querySelector('.card-artists ul');
+    if(data.artist_ids.length){
+      data.artist_ids.forEach((artist) => {
+        let listEl = document.createElement('li');
+        listEl.innerHTML = `<a href="/artists/${artist.id}">${artist.title}</a>`;
+        artistsList.appendChild(listEl);
+      });
+    }else{
+      card.querySelector('.card-artists').textContent = 'No information about exhibition artists.'
+    }
+  }
+  
 }
 
 customElements.define("exhibition-card", ExibitionCard);

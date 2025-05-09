@@ -20,6 +20,14 @@ const api_endpoints =
         "fields": "id,image_url,title,short_description,gallery_title,artist_ids,aic_start_at,aic_end_at",
         "param": "ids"
 
+    },
+    "artists":{
+        "description": "artists",
+        "url": `/agents`,
+        "limit": 1,
+        "page": 1,
+        "fields": "id,title",
+        "param": "ids"
     }
 };
 
@@ -47,6 +55,18 @@ async function getFeaturedExhibitionsId() {
 
 }
 
+async function getArtistsNames(artistsIds) {
+    api_endpoints.artists.limit = Math.min(100,artistsIds.length);
+    //create a get request url 
+    let url = `${api_endpoints.artists.url}?fields=${api_endpoints.artists.fields}&${api_endpoints.artists.param}=${artistsIds.join(',')}&limit=${api_endpoints.artists.limit}`;
+    try {
+        const response = await instance.get(url);
+        return response.data.data;
+    } catch (error) {
+        throw `Could not get artists info. Error: ${error}`
+    }
+}
+
 async function getExhibitionsData() {
     //get featured exhibitions Id
     let ids = await getFeaturedExhibitionsId();
@@ -64,4 +84,4 @@ async function getExhibitionsData() {
 }
 
 
-export { getExhibitionsData };
+export { getExhibitionsData, getArtistsNames };
