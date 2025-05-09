@@ -12,10 +12,13 @@ header {
     z-index: 1;
     /**/
     transition: all 0.6s;
+    background-color: rgba(250, 235, 215,0.3);
+    text-shadow: 1px 1px 2px black;
 }
 
 /*Add styling for sticky class*/
 header.sticky {
+    text-shadow: none;
     padding: 5px 50px;
     background-color: dimgray;
 }
@@ -32,8 +35,8 @@ header div{
 }
 
 header .logo{
-    position: relative;
     font-weight: 1000;
+    position: relative;
     width: 50px;
     color: dimgray;
     /* delete text decoration*/
