@@ -1,7 +1,7 @@
 import { getExhibitionsData } from "../../scripts/apiConfig.js";
 const template = `
-<link rel="stylesheet" href="../src/components/Exhibitions/Exhibitions.css" />
-    <h2>Exhibition</h2>
+    <link rel="stylesheet" href="../src/components/Exhibitions/Exhibitions.css" />
+    <h2>Exhibitions</h2>
     <div class="exhibition-container">
     </div>
 `;
@@ -46,7 +46,6 @@ class Exhibitions extends HTMLElement {
     }
     render(data){
         this.exhibitionContainer.innerHTML = '';
-        console.log(data)
         //get data from API
         data.forEach((exhibition)=>{
             const exhibitionEl = document.createElement("exhibition-card");
