@@ -1,13 +1,14 @@
 import { getExhibitionsData } from "../../scripts/apiConfig.js";
 const template = `
-    <h2>Exibitions</h2>
-    <div class="exibition-container">
+<link rel="stylesheet" href="../src/components/Exhibitions/Exhibitions.css" />
+    <h2>Exhibition</h2>
+    <div class="exhibition-container">
     </div>
 `;
 
 
 
-class Exibitions extends HTMLElement {
+class Exhibitions extends HTMLElement {
     constructor() {
         super();
 
@@ -18,7 +19,7 @@ class Exibitions extends HTMLElement {
         //made a deep clone of html
         shadow.appendChild(temlateEl.content.cloneNode(true));
 
-        this.exhibitionContainer = this.shadowRoot.querySelector('.exibition-container')
+        this.exhibitionContainer = this.shadowRoot.querySelector('.exhibition-container')
         this.exhibitionContainer.innerHTML = `<div>Loading exhibitions data...</div>`;
         // this.render(exhibitions)
 
@@ -45,16 +46,16 @@ class Exibitions extends HTMLElement {
     }
     render(data){
         this.exhibitionContainer.innerHTML = '';
-        let el = document.createElement('p');
+        console.log(data)
         //get data from API
-        data.forEach((exibition)=>{
-            const exibitionEl = document.createElement("exibition-card");
-            exibitionEl.addExibitionData = exibition;
-            this.exhibitionContainer.appendChild(exibitionEl);
+        data.forEach((exhibition)=>{
+            const exhibitionEl = document.createElement("exhibition-card");
+            exhibitionEl.addExibitionData = exhibition;
+            this.exhibitionContainer.appendChild(exhibitionEl);
         })
     }
 }
 
-customElements.define("exibition-container", Exibitions);
+customElements.define("exhibition-container", Exhibitions);
 
-export default Exibitions;
+export default Exhibitions;

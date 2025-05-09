@@ -1,0 +1,47 @@
+.exhibition-card {
+    background-color: azure;
+    border: solid #000000 1px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.exhibition-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 0.95em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-info {
+    font-size: 0.85em;
+    margin-bottom: 5px;
+}
+
+.card-artists {
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+
+.card-artists ul {
+    padding-left: 18px;
+    margin: 0;
+}

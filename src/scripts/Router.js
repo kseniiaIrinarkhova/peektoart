@@ -39,8 +39,8 @@ const Router = {
             case "/":
                 el = document.createElement("about-info");
                 break;
-            case "/exibitions":
-                el = document.createElement("exibition-container");
+            case "/exhibitions":
+                el = document.createElement("exhibition-container");
                 break;
             case "/artists":
                 el = document.createElement("artist-container");

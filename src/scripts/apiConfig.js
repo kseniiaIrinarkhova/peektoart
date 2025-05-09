@@ -17,7 +17,7 @@ const api_endpoints =
         "url": `/exhibitions`,
         "limit": 1,
         "page": 1,
-        "fields": "id,image_url,short_description,gallery_title,artist_ids,aic_start_at,aic_end_at",
+        "fields": "id,image_url,title,short_description,gallery_title,artist_ids,aic_start_at,aic_end_at",
         "param": "ids"
 
     }

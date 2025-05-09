@@ -4,7 +4,7 @@ const template = `
     <a href="/" class="logo">Peek to Art</a>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/exibitions">Exibitions</a></li>
+        <li><a href="/exhibitions">Exhibitions</a></li>
         <li><a href="/artists">Artists</a></li>
       </ul>
     </header>
