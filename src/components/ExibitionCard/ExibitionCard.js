@@ -20,10 +20,9 @@ class ExibitionCard extends HTMLElement {
      * @param {any} exibition
      */
     set addExibitionData(exibition){
-        console.log(exibition);
         const card = this.shadowRoot.querySelector('.exibition-card');
-        const content = document.createElement('p');
-        content.textContent = `${exibition.name}`
+        const content = document.createElement('div');
+        content.innerHTML = exibition.short_description
         card.appendChild(content)
     }
 }
