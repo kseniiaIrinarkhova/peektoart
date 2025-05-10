@@ -28,6 +28,22 @@ const api_endpoints =
         "page": 1,
         "fields": "id,title",
         "param": "ids"
+    },
+    "artist":{
+        "description":"artistinfo",
+        "url":'/agents',
+        "limit": 1,
+        "page": 1,
+        "fields": "id,title,birth_date,death_date,description",
+        "param": "ids"
+    },
+    "artistWorks":{
+        "description":"artist works",
+        "url":'/agents',
+        "limit": 10,
+        "page": 1,
+        "fields": "id,title,birth_date,death_date,description",
+        "param": "ids"
     }
 };
 
@@ -83,5 +99,10 @@ async function getExhibitionsData() {
 
 }
 
+async function getArtistInfo(artist_id) {
+    //create url for artist endpoint
+    let url = ""
+}
 
-export { getExhibitionsData, getArtistsNames };
+
+export { getExhibitionsData, getArtistsNames,getArtistInfo };

@@ -11,15 +11,15 @@ const Router = {
                 Router.nav(url);
             })
         })
-        //check if user click on back button on browser
-        window.addEventListener('popstate', (e) => {
-            //call route
-            if (e.state === null) {
-                //if state stack is empty go to the first page
-                Router.nav('/', true);
-            } else {
-                Router.nav(e.state.route, false);
-            }
+
+        window.addEventListener('hashchange', () => {
+            const path = location.hash.slice(1) || '/';
+            Router.nav(path, false);
+        });
+
+        window.addEventListener('load', () => {
+            const path = location.hash.slice(1) || '/';
+            Router.nav(path, false);
         });
 
     },
@@ -29,7 +29,12 @@ const Router = {
     addToHistory - parameter that helps user to go back 
     */
     nav: (route, addToHistory = true) => {
-        
+
+        if (addToHistory) {
+            location.hash = route;
+            return; // nav will be triggered by hashchange
+          }
+
         //switch routes
         let el;
         switch (route) {
@@ -51,7 +56,7 @@ const Router = {
                     const artistId = route.split("/")[2];
                     //create artist detail page
                     el = document.createElement("artist-details");
-                    el.setAttribute("id", artistId);
+                    el.artistId =artistId ;
                 } else {
                     // nav to error page
                     Router.nav("/errorpage");
@@ -60,10 +65,7 @@ const Router = {
                 break;
         }
 
-        //add information about routes to state
-        if (addToHistory) {
-            history.pushState({ route }, null, route);
-        }
+        
 
         const entry = document.querySelector('#content');
         //clear content of the page

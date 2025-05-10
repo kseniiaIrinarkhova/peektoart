@@ -76,7 +76,7 @@ async fetchArtistsInfo(artist_ids){
     if(data.artist_ids.length){
       data.artist_ids.forEach((artist) => {
         let listEl = document.createElement('li');
-        listEl.innerHTML = `<a href="/artists/${artist.id}">${artist.title}</a>`;
+        listEl.innerHTML = `<a href="#/artists/${artist.id}">${artist.title}</a>`;
         artistsList.appendChild(listEl);
       });
     }else{
