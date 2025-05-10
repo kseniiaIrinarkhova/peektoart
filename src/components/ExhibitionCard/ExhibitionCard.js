@@ -36,7 +36,7 @@ class ExibitionCard extends HTMLElement {
   /**
    * @param {any} exhibition
    */
-  set addExibitionData(exhibition) {
+  set exhibitionData(exhibition) {
     this.exhibition = exhibition;
   }
   async connectedCallback(){

@@ -7,6 +7,7 @@ import ExhibitionCard from "../components/ExhibitionCard/ExhibitionCard.js";
 import Exhibitions from "../components/Exhibitions/Exhibitions.js";
 import ArtistCard from "../components/ArtistCard/ArtistCard.js";
 import Artists from "../components/Artists/Artists.js";
+import ArtistDetails from "../components/ArtistDetails/ArtistDetails.js";
 import { getExhibitionsData } from "./apiConfig.js";
 
 //add header style

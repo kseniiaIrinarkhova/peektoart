@@ -2,9 +2,9 @@ import { getArtistInfo } from "../../scripts/apiConfig.js";
 const template = `
 <link rel="stylesheet" href="../src/components/ArtistDetails/ArtistDetails.css" />
     <div class="artist">
-      <img src="" alt="Artist Portrait">
       <div class="artist-content">
-        <div class="artist-title"></div>
+        <div class="artist-info"></div>
+        <div class="artist-biography"></div>
         <div class="artist-gallery">
         </div>
       </div>
@@ -28,7 +28,7 @@ class ArtistDetails extends HTMLElement {
     /**
      * @param {any} artist_id
      */
-    set addArtistID(artist_id) {
+    set artistID(artist_id) {
         this.artist_id = artist_id;
     }
 
@@ -38,7 +38,7 @@ class ArtistDetails extends HTMLElement {
         try {
 
             if (this.artist_id) {
-                await this.fetchArtistsInfo(this.artist_id);
+                await this.fetchArtistsInfo();
             }
             else {
                 throw "Error with getting artist ID"
@@ -50,9 +50,9 @@ class ArtistDetails extends HTMLElement {
         }
 
     }
-    async fetchArtistsInfo(artist_id) {
+    async fetchArtistsInfo() {
         try {
-            this.artist_info = await getArtistInfo(artist_id);
+            this.artist_info = await getArtistInfo(this.artist_id);
 
         } catch (error) {
             this.shadowRoot.innerHTML = '<div>Error fetching artist data.</div>'
@@ -63,12 +63,26 @@ class ArtistDetails extends HTMLElement {
     render() {
         const card = this.shadowRoot.querySelector('.artist');
         card.setAttribute('id', this.artist_id);
-        card.querySelector('img').setAttribute("src", this.artist_info.image_url);
-        card.querySelector('.artist-title').textContent = this.artist_info.title;
+        let dates = '';
+        if(this.artist_info.birth_date){
+            dates = `( ${this.artist_info.birth_date} - `;
+            if(this.artist_info.death_date){
+                dates += `${this.artist_info.death_date}`;
+            }
+            dates += ` )`;
+        }
+
+        card.querySelector('.artist-info').innerHTML = `
+        <h2>${this.artist_info.title} ${dates}</h2>
+        `;
+
+        card.querySelector('.artist-biography').innerHTML = (this.artist_info.description)?
+        this.artist_info.description
+        : `<p>There is no information about artist biography.</p>`
     }
 
 }
 
-customElements.define("artist-info", ArtistDetails);
+customElements.define("artist-details", ArtistDetails);
 
 export default ArtistDetails;

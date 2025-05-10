@@ -101,7 +101,15 @@ async function getExhibitionsData() {
 
 async function getArtistInfo(artist_id) {
     //create url for artist endpoint
-    let url = ""
+    let url = `${api_endpoints.artist.url}?fields=${api_endpoints.artist.fields}&${api_endpoints.artist.param}=${artist_id}`;
+    try {
+       const response = await instance.get(url);
+       //return information about artist
+       return response.data.data[0];
+        
+    } catch (error) {
+        throw `Could not get eartist info. Error: ${error}`
+    }
 }
 
 

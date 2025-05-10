@@ -56,7 +56,7 @@ const Router = {
                     const artistId = route.split("/")[2];
                     //create artist detail page
                     el = document.createElement("artist-details");
-                    el.artistId =artistId ;
+                    el.artistID = artistId ;
                 } else {
                     // nav to error page
                     Router.nav("/errorpage");

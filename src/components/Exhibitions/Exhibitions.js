@@ -49,7 +49,7 @@ class Exhibitions extends HTMLElement {
         //get data from API
         data.forEach((exhibition)=>{
             const exhibitionEl = document.createElement("exhibition-card");
-            exhibitionEl.addExibitionData = exhibition;
+            exhibitionEl.exhibitionData = exhibition;
             this.exhibitionContainer.appendChild(exhibitionEl);
         })
     }
