@@ -5,9 +5,9 @@ import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 import About from "../components/About/About.js";
 import ExhibitionCard from "../components/ExhibitionCard/ExhibitionCard.js";
 import Exhibitions from "../components/Exhibitions/Exhibitions.js";
-import ArtistCard from "../components/ArtistCard/ArtistCard.js";
-import Artists from "../components/Artists/Artists.js";
 import ArtistDetails from "../components/ArtistDetails/ArtistDetails.js";
+import Artworks from "../components/Artworks/Artworks.js";
+
 import { getExhibitionsData } from "./apiConfig.js";
 
 //add header style

@@ -17,11 +17,11 @@ const api_endpoints =
         "url": `/exhibitions`,
         "limit": 1,
         "page": 1,
-        "fields": "id,image_url,title,short_description,gallery_title,artist_ids,aic_start_at,aic_end_at",
+        "fields": "id,image_url,title,short_description,gallery_title,artist_ids,aic_start_at,aic_end_at,artwork_ids",
         "param": "ids"
 
     },
-    "artists":{
+    "artists": {
         "description": "artists",
         "url": `/agents`,
         "limit": 1,
@@ -29,22 +29,25 @@ const api_endpoints =
         "fields": "id,title",
         "param": "ids"
     },
-    "artist":{
-        "description":"artistinfo",
-        "url":'/agents',
+    "artist": {
+        "description": "artistinfo",
+        "url": '/agents',
         "limit": 1,
         "page": 1,
         "fields": "id,title,birth_date,death_date",
         "param": "ids"
     },
-    "artistWorks":{
-        "description":"artist works",
-        "url":'/agents',
+    "artworks": {
+        "description": "artworks",
+        "url": '/artworks',
         "limit": 10,
         "page": 1,
-        "fields": "id,title,birth_date,death_date,description",
-        "param": "ids"
-    }
+        "fields": "id,title,artist_id,image_id",
+        "param": "ids",
+        "image_url": 'https://www.artic.edu/iiif/2',
+        "image_param": '/full/843,/0/default.jpg'
+    },
+
 };
 
 //set config defaults when created instance for API instance
@@ -72,7 +75,7 @@ async function getFeaturedExhibitionsId() {
 }
 
 async function getArtistsNames(artistsIds) {
-    api_endpoints.artists.limit = Math.min(100,artistsIds.length);
+    api_endpoints.artists.limit = Math.min(100, artistsIds.length);
     console.log(artistsIds.join(','))
     //create a get request url 
     let url = `${api_endpoints.artists.url}?fields=${api_endpoints.artists.fields}&${api_endpoints.artists.param}=${artistsIds.join(',')}&limit=${api_endpoints.artists.limit}`;
@@ -104,14 +107,40 @@ async function getArtistInfo(artist_id) {
     //create url for artist endpoint
     let url = `${api_endpoints.artist.url}?fields=${api_endpoints.artist.fields}&${api_endpoints.artist.param}=${artist_id}`;
     try {
-       const response = await instance.get(url);
-       //return information about artist
-       return response.data.data[0];
-        
+        const response = await instance.get(url);
+        //return information about artist
+        return response.data.data[0];
+
     } catch (error) {
-        throw `Could not get eartist info. Error: ${error}`
+        throw `Could not get artist info. Error: ${error}`
+    }
+}
+async function getArtworks(artworks_ids = []) {
+    //create url
+    let url;
+    //if we know artworks that we want to see
+    if (artworks_ids.length) {
+        api_endpoints.artworks.limit = artworks_ids.length;
+        url = `${api_endpoints.artworks.url}?fields=${api_endpoints.artworks.fields}&${api_endpoints.artworks.param}=${artworks_ids.join(',')}`;
+
+
+    } else {
+        //random artworks
+        let randompage = Math.random() * (100 - 1) + 100;
+        url = `${api_endpoints.artworks.url}?fields=${api_endpoints.artworks.fields}&page=${randompage}`;
+
+    }
+
+    url += `&limit=${api_endpoints.artworks.limit}`;
+
+    try {
+        const response = await instance.get(url);
+        //return information about artist
+        return response.data.data;
+    } catch (error) {
+        throw `Could not get artworks info. Error: ${error}`;
     }
 }
 
 
-export { getExhibitionsData, getArtistsNames,getArtistInfo };
+export { getExhibitionsData, getArtistsNames, getArtistInfo,getArtworks };

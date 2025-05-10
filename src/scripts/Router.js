@@ -44,8 +44,8 @@ const Router = {
             case "/exhibitions":
                 el = document.createElement("exhibition-container");
                 break;
-            case "/artists":
-                el = document.createElement("artist-container");
+            case "/artworks":
+                el = document.createElement("artwork-container");
                 break;
             case '/errorpage':
                 el = document.createElement("error-page");
