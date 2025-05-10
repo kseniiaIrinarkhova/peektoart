@@ -1,4 +1,5 @@
 import Router from "./Router.js";
+import ErrorPage from "../components/ErrorPage/ErrorPage.js";
 import SiteHeader from "../components/SiteHeader/SiteHeader.js";
 import SiteFooter from "../components/SiteFooter/SiteFooter.js";
 import About from "../components/About/About.js";
