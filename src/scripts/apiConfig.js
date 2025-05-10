@@ -34,7 +34,7 @@ const api_endpoints =
         "url":'/agents',
         "limit": 1,
         "page": 1,
-        "fields": "id,title,birth_date,death_date,description",
+        "fields": "id,title,birth_date,death_date",
         "param": "ids"
     },
     "artistWorks":{
@@ -73,6 +73,7 @@ async function getFeaturedExhibitionsId() {
 
 async function getArtistsNames(artistsIds) {
     api_endpoints.artists.limit = Math.min(100,artistsIds.length);
+    console.log(artistsIds.join(','))
     //create a get request url 
     let url = `${api_endpoints.artists.url}?fields=${api_endpoints.artists.fields}&${api_endpoints.artists.param}=${artistsIds.join(',')}&limit=${api_endpoints.artists.limit}`;
     try {
