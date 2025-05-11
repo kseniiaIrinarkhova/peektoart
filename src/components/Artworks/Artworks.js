@@ -1,6 +1,6 @@
 import { getArtworks } from "../../scripts/apiConfig.js";
 const template = `
-<link rel="stylesheet" href="../src/components/ArtistDetails/ArtistDetails.css" />
+<link rel="stylesheet" href="../src/components/Artworks/Artworks.css" />
     <div class="artwork-container">      
     </div>
 `;
@@ -17,6 +17,8 @@ class Artworks extends HTMLElement {
         shadow.appendChild(temlateEl.content.cloneNode(true));
         this.artwork_ids = [];
         this.artworks = [];
+        this.artworksContainer = this.shadowRoot.querySelector('.artwork-container')
+        this.artworksContainer.innerHTML = `<div>Loading artworks data...</div>`;
     }
 
     /**
@@ -24,6 +26,10 @@ class Artworks extends HTMLElement {
      */
     set artworkIDs(artwork_ids) {
         this.artwork_ids = artwork_ids;
+    }
+
+    set exhibitionID(exhibition_id){
+        this.exhibition_id = exhibition_id;
     }
 
 
@@ -41,8 +47,7 @@ class Artworks extends HTMLElement {
     }
     async fetchArtworks() {
         try {
-            this.artworks = await getArtworks(this.artwork_ids);
-            console.log(this.artworks)
+            this.artworks = await getArtworks(this.exhibition_id);
 
         } catch (error) {
             this.shadowRoot.innerHTML = '<div>Error fetching artist data.</div>'
@@ -51,8 +56,13 @@ class Artworks extends HTMLElement {
     }
 
     render() {
-        const artworks = this.shadowRoot.querySelector('.artwork-container');
-        artworks.innerHTML = 'Gallery'
+        this.artworksContainer.innerHTML = '';
+        //get data from API
+        this.artworks.forEach((artwork)=>{
+            const artworkEl = document.createElement("artwork-card");
+            artworkEl.artworkData = artwork;
+            this.artworksContainer.appendChild(artworkEl);
+        })
     }
 
 }

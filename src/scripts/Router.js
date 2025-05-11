@@ -57,7 +57,14 @@ const Router = {
                     //create artist detail page
                     el = document.createElement("artist-details");
                     el.artistID = artistId ;
-                } else {
+                } else if(route.startsWith("/artworks/exhibition")){
+                    //get informationa about specific exhibition artworks
+                    const exhibitionId = route.split("/")[3];
+                    el = document.createElement("artwork-container");
+                    el.exhibitionID = exhibitionId;
+
+                }
+                    else{
                     // nav to error page
                     Router.nav("/errorpage");
                     return;

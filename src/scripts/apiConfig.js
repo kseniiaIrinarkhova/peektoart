@@ -44,9 +44,15 @@ const api_endpoints =
         "page": 1,
         "fields": "id,title,artist_id,image_id",
         "param": "ids",
-        "image_url": 'https://www.artic.edu/iiif/2',
-        "image_param": '/full/843,/0/default.jpg'
     },
+    "exhibitionArt":{
+        "description": "exhibition artworks ids",
+        "url": `/exhibitions`,
+        "limit": 1,
+        "page": 1,
+        "fields": "id,artwork_ids",
+        "param": "ids"
+    }
 
 };
 
@@ -76,7 +82,6 @@ async function getFeaturedExhibitionsId() {
 
 async function getArtistsNames(artistsIds) {
     api_endpoints.artists.limit = Math.min(100, artistsIds.length);
-    console.log(artistsIds.join(','))
     //create a get request url 
     let url = `${api_endpoints.artists.url}?fields=${api_endpoints.artists.fields}&${api_endpoints.artists.param}=${artistsIds.join(',')}&limit=${api_endpoints.artists.limit}`;
     try {
@@ -115,11 +120,13 @@ async function getArtistInfo(artist_id) {
         throw `Could not get artist info. Error: ${error}`
     }
 }
-async function getArtworks(artworks_ids = []) {
+async function getArtworks(exhibition_id = "") {
     //create url
     let url;
-    //if we know artworks that we want to see
-    if (artworks_ids.length) {
+    let artworks_ids=[];
+    //if we know artworks of which exhibition we want to see
+    if (exhibition_id !== "") {
+         artworks_ids = await getExhibitionArtworks(exhibition_id);
         api_endpoints.artworks.limit = artworks_ids.length;
         url = `${api_endpoints.artworks.url}?fields=${api_endpoints.artworks.fields}&${api_endpoints.artworks.param}=${artworks_ids.join(',')}`;
 
@@ -142,5 +149,15 @@ async function getArtworks(artworks_ids = []) {
     }
 }
 
+async function getExhibitionArtworks(exhibition_id){
+let url = `${api_endpoints.exhibitionArt.url}?fields=${api_endpoints.exhibitionArt.fields}&${api_endpoints.exhibitionArt.param}=${exhibition_id}`;
+try {
+    const response = await instance.get(url);
+        //return information about artist
+        return response.data.data[0].artwork_ids;
+} catch (error) {
+    throw `Could not get artworks info. Error: ${error}`;
+}
+}
 
 export { getExhibitionsData, getArtistsNames, getArtistInfo,getArtworks };

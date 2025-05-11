@@ -7,6 +7,7 @@ import ExhibitionCard from "../components/ExhibitionCard/ExhibitionCard.js";
 import Exhibitions from "../components/Exhibitions/Exhibitions.js";
 import ArtistDetails from "../components/ArtistDetails/ArtistDetails.js";
 import Artworks from "../components/Artworks/Artworks.js";
+import ArtworkCard from "../components/ArtworkCard/ArtworkCard.js";
 
 import { getExhibitionsData } from "./apiConfig.js";
 

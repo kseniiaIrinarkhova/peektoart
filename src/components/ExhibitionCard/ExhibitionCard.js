@@ -10,6 +10,7 @@ const template = `
           <div class="card-gallery"> </div>
           <div class="card-begdate"> </div>
           <div class="card-enddate"> </div>
+          <div class="card-artworks"> </div>
         </div>
         <div class="card-artists">
           <strong>Artists:</strong>
@@ -81,6 +82,14 @@ async fetchArtistsInfo(artist_ids){
       });
     }else{
       card.querySelector('.card-artists').textContent = 'No information about exhibition artists.'
+    }
+    if(data.artwork_ids.length){
+      card.querySelector('.card-artworks').innerHTML = `
+      <a href="#/artworks/exhibition/${this.exhibition.id}">Artworks</a>
+      `
+
+    }else{
+      card.querySelector('.card-artworks').textContent = 'No information about exhibition artworks.'
     }
   }
   
