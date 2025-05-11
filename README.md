@@ -43,7 +43,7 @@ To run the project locally:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/peektoart.git
+   git clone https://github.com/kseniiaIrinarkhova/peektoart
    cd peektoart
    ```
 

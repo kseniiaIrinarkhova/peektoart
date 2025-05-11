@@ -1,6 +1,7 @@
 import { getArtworks } from "../../scripts/apiConfig.js";
 const template = `
 <link rel="stylesheet" href="../src/components/Artworks/Artworks.css" />
+    <h2>Artworks gallery.</h2>
     <div class="artwork-container">      
     </div>
 `;
@@ -15,20 +16,17 @@ class Artworks extends HTMLElement {
         temlateEl.innerHTML = template;
         //made a deep clone of html
         shadow.appendChild(temlateEl.content.cloneNode(true));
-        this.artwork_ids = [];
         this.artworks = [];
+        this.exhibition_id = '';
         this.artworksContainer = this.shadowRoot.querySelector('.artwork-container')
         this.artworksContainer.innerHTML = `<div>Loading artworks data...</div>`;
     }
 
-    /**
-     * @param {any} artwork_ids
-     */
-    set artworkIDs(artwork_ids) {
-        this.artwork_ids = artwork_ids;
-    }
 
-    set exhibitionID(exhibition_id){
+    /**
+     * @param {string} exhibition_id
+     */
+    set exhibitionID(exhibition_id) {
         this.exhibition_id = exhibition_id;
     }
 
@@ -36,7 +34,6 @@ class Artworks extends HTMLElement {
     async connectedCallback() {
         //try to get information about artist and render it
         try {
-
             await this.fetchArtworks();
             this.render()
         } catch (error) {
@@ -57,8 +54,9 @@ class Artworks extends HTMLElement {
 
     render() {
         this.artworksContainer.innerHTML = '';
+
         //get data from API
-        this.artworks.forEach((artwork)=>{
+        this.artworks.forEach((artwork) => {
             const artworkEl = document.createElement("artwork-card");
             artworkEl.artworkData = artwork;
             this.artworksContainer.appendChild(artworkEl);
