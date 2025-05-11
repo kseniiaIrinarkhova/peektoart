@@ -57,7 +57,15 @@ class ArtworkCard extends HTMLElement {
   render() {
     const card = this.shadowRoot.querySelector('.artwork-card');
     card.setAttribute('id', this.artwork.id);
-    card.querySelector('img').setAttribute("src", this.createImageURL(this.artwork.image_id));
+    //try to get image for artwork
+    const img = card.querySelector('img');
+    img.setAttribute("src", this.createImageURL(this.artwork.image_id));
+    
+    //check if there is some issues with image
+    img.onerror = () => {
+      console.log(`change image to placeholder for artwork ${this.artwork.title}`)
+      img.src = '/src/imgs/image_not_available.png';
+    };
     card.querySelector('.card-title').textContent = this.artwork.title;
     let artist = card.querySelector('.card-artist');
     if (this.artwork.artist_id) {
@@ -68,6 +76,7 @@ class ArtworkCard extends HTMLElement {
   }
   createImageURL(image_id) {
     if (image_id) {
+
       return `https://www.artic.edu/iiif/2/${image_id}/full/843,/0/default.jpg`;
 
     } else {
