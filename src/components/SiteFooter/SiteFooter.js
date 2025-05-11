@@ -1,7 +1,15 @@
 const template = `
 <link rel="stylesheet" href="../src/components/SiteFooter/SiteFooter.css" />
     <footer>
-    <p>&copy; CopyRight</p>
+    <p>&copy; 2025 PeekToArt. Website created by 
+    <a href="https://github.com/kseniiairinarkhova" target="_blank" rel="noopener noreferrer">
+      Kseniia Irinarkhova
+    </a>. 
+    All information about artworks, exhibitions, and artists is sourced from the 
+    <a href="https://api.artic.edu/docs/#introduction" target="_blank" rel="noopener noreferrer">
+      Art Institute of Chicago Open API
+    </a>.
+  </p>
     </footer>
     
 `;
